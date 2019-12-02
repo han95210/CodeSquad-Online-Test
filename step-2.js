@@ -24,6 +24,12 @@
 // (8)매 회에서 네 번의 누적된 안타는 1 득점으로 이어지며, 이후부터는 1안타당 추가로 1득점이 발생한다. (완료)
 // (9)경기 진행상황과 경기의 최종 결과를 화면에 표시한다. (완료)
 
+/*
+문제점
+1. game.randomVariable() 함수가 반복문 9번을 돌고 마지막 9번째 타자의 타율로만 계산을 한다. 
+2. game.randomVariable() 을 game.attack()에서 호출시
+*/
+
 // team.playerName1 = ["최한울", "김보근", "한동윤", "김승언", "달마", "박선배", "박재연", "최승현", "박게이"];
 // team.playerName2 = ["카타", "가렌", "제이스", "제라스", "세나", "루시안", "카밀", "잭스", "니코"];
 // team.playerBattingAve1 = ["0.111", "0.222", "0.333", "0.444", "0.111", "0.222", "0.333", "0.444", "0.111"];
@@ -103,45 +109,51 @@ game.reset2 = function () {
     this.result2();
 }
 //team.playerBattingAve1[i]은 타율
-game.randomVariable1 = function () {
-    for (var i = 0; i < 9; i++) {
-        var value1 = (1 - team.playerBattingAve1[i]) / 2 - 0.05;
-        if (Math.random().toFixed(1) === "0.1") {
-            this.answer = "O";
-        } else if (Math.random() < value1 && team.playerBattingAve1[i] > 0.1 && team.playerBattingAve1[i] < 0.5) {
-            this.answer = "S";
-        } else if (Math.random() > value1 && team.playerBattingAve1[i] > 0.1 && team.playerBattingAve1[i] < 0.5) {
-            this.answer = "B";
-        } else if (team.playerBattingAve1[i] > 0.1 && team.playerBattingAve1[i] < 0.5) {
-            this.answer = "안타";
-        }
+game.randomVariable1 = function (i) {
+    var value1 = (1 - team.playerBattingAve1[i]) / 2 - 0.05;
+    if (Math.random().toFixed(1) === "0.1") {
+        this.answer = "O";
+    } else if (Math.random() < value1 && team.playerBattingAve1[i] > 0.1 && team.playerBattingAve1[i] < 0.5) {
+        this.answer = "S";
+    } else if (Math.random() > value1 && team.playerBattingAve1[i] > 0.1 && team.playerBattingAve1[i] < 0.5) {
+        this.answer = "B";
+    } else if (team.playerBattingAve1[i] > 0.1 && team.playerBattingAve1[i] < 0.5) {
+        this.answer = "안타";
     }
 }
 
-game.randomVariable2 = function () {
-    for (var i = 0; i < 9; i++) {
-        var value2 = (1 - team.playerBattingAve2[i]) / 2 - 0.05;
-        if (Math.random().toFixed(1) === "0.1") {
-            this.answer = "O";
-        } else if (Math.random() < value2 && team.playerBattingAve2[i] > 0.1 && team.playerBattingAve2[i] < 0.5) {
-            this.answer = "S";
-        } else if (Math.random() > value2 && team.playerBattingAve2[i] > 0.1 && team.playerBattingAve2[i] < 0.5) {
-            this.answer = "B";
-        } else if (team.playerBattingAve2[i] > 0.1 && team.playerBattingAve2[i] < 0.5) {
-            this.answer = "안타";
-        }
+game.randomVariable2 = function (i) {
+    var value2 = (1 - team.playerBattingAve2[i]) / 2 - 0.05;
+    if (Math.random().toFixed(1) === "0.1") {
+        this.answer = "O";
+    } else if (Math.random() < value2 && team.playerBattingAve2[i] > 0.1 && team.playerBattingAve2[i] < 0.5) {
+        this.answer = "S";
+    } else if (Math.random() > value2 && team.playerBattingAve2[i] > 0.1 && team.playerBattingAve2[i] < 0.5) {
+        this.answer = "B";
+    } else if (team.playerBattingAve2[i] > 0.1 && team.playerBattingAve2[i] < 0.5) {
+        this.answer = "안타";
     }
 }
+
+// team.playerName1 = ["최한울", "김보근", "한동윤", "김승언", "달마", "박선배", "박재연", "최승현", "박게이"];
+// team.playerName2 = ["카타", "가렌", "제이스", "제라스", "세나", "루시안", "카밀", "잭스", "니코"];
+// team.playerBattingAve1 = ["0.111", "0.222", "0.333", "0.444", "0.111", "0.222", "0.333", "0.444", "0.111"];
+// team.playerBattingAve2 = ["0.111", "0.222", "0.333", "0.444", "0.111", "0.222", "0.333", "0.444", "0.111"];
+// team.teamNameSave = ["1-8반 히어로즈", "리오레"];
+
 
 game.attack1 = function () {
     while (this.out1 != 3) {
         for (var i = 0; i < 9; i++) {
             document.write((i + 1) + "번 " + team.playerName1[i] + "<br>");
-            this.randomVariable1();
+            this.randomVariable1(i);
             if (this.answer === "S") {
                 this.strike++;
                 document.write("스트라이크!<br>");
                 this.result1();
+                if (this.strike < 3) {
+                    i--;
+                }
                 if (this.strike === 3) {
                     this.out1++;
                     document.write("스트라이크 3개로 1아웃이 추가됩니다!<br>");
@@ -160,6 +172,9 @@ game.attack1 = function () {
                 this.ball++;
                 document.write("볼!<br>");
                 this.result1();
+                if (this.ball < 4) {
+                    i--;
+                }
                 if (this.ball === 4) {
                     this.hit1++;
                     document.write("볼 넷으로 1안타가 됩니다.<br>");
@@ -185,6 +200,9 @@ game.attack2 = function () {
                 this.strike++;
                 document.write("스트라이크!<br>");
                 this.result2();
+                if (this.strike < 3) {
+                    i--;
+                }
                 if (this.strike === 3) {
                     this.out2++;
                     document.write("스트라이크 3개로 1아웃이 추가됩니다!<br>");
@@ -203,6 +221,9 @@ game.attack2 = function () {
                 this.ball++;
                 document.write("볼!<br>");
                 this.result2();
+                if (this.ball < 4) {
+                    i--;
+                }
                 if (this.ball === 4) {
                     this.hit2++;
                     document.write("볼 넷으로 1안타가 됩니다.<br>");
