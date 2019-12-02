@@ -38,6 +38,25 @@ team.playerBattingAve1 = [];
 team.playerBattingAve2 = [];
 team.teamNameSave = [];
 
+//잘못된 타율값 입력시 에러메세지 전송
+team.sendErrorMesageBattingAve = function() {
+    while (numBattingAve > 0.5 || numBattingAve < 0.1) {
+        alert("타율값을 다시 입력해주세요.");
+        var strPlayer = prompt((i + 1) + "번 타자 정보 입력(이름,타율)");
+        var player1 = strPlayer.split(',');
+        var numBattingAve = Number(player1[1]);
+    }
+}
+//각 팀 정보를 배열에 따로 입력
+team.inputTeamInfo = function() {
+    if (j === 0) {
+        this.playerName1[i] = player1[0];
+        this.playerBattingAve1[i] = numBattingAve.toFixed(3);
+    } else {
+        this.playerName2[i] = player1[0];
+        this.playerBattingAve2[i] = numBattingAve.toFixed(3);
+    }
+}
 //실질적으로 데이터 입력하는 함수
 team.isInput = function () {
     for (var j = 0; j < 2; j++) {
@@ -46,19 +65,8 @@ team.isInput = function () {
             var strPlayer = prompt((i + 1) + "번 타자 정보 입력(이름,타율)");
             var player1 = strPlayer.split(',');
             var numBattingAve = Number(player1[1]);
-            while (numBattingAve > 0.5 || numBattingAve < 0.1) {
-                alert("타율값을 다시 입력해주세요.");
-                var strPlayer = prompt((i + 1) + "번 타자 정보 입력(이름,타율)");
-                var player1 = strPlayer.split(',');
-                var numBattingAve = Number(player1[1]);
-            }
-            if (j === 0) {
-                this.playerName1[i] = player1[0];
-                this.playerBattingAve1[i] = numBattingAve.toFixed(3);
-            } else {
-                this.playerName2[i] = player1[0];
-                this.playerBattingAve2[i] = numBattingAve.toFixed(3);
-            }
+            this.sendErrorMesageBattingAve();
+            this.inputTeamInfo();
         }
         this.teamNameSave[j] = this.Name;
     }
@@ -81,6 +89,7 @@ team.isOutput = function () {
     document.write("<input type='text' id='input'>");
     document.write('<button onclick="baseballGame()">확인</button>' + "<br><br>");
 };
+
 // game 객체 생성
 var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0 };
 game.answer = [];
@@ -252,6 +261,9 @@ game.startAMatch = function () {
     document.write("<br>경기 종료<br><br>");
     document.write(team.teamNameSave[0] + " VS " + team.teamNameSave[1] + "<br>");
     document.write(this.score1 + " : " + this.score2 + "<br>");
+    if (this.score1 === this.score2) {
+        document.write("무승부입니다!");
+    }
     document.write("Thank you!");
 }
 
