@@ -62,6 +62,7 @@ team.isOutput = function () {
     document.write("<input type='text' id='input'>");
     document.write('<button onclick="baseballGame()">확인</button>' + "<br><br>");
 };
+
 // game 객체 생성
 var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0 };
 game.Array = ["S", "O", "B", "안타"];
@@ -163,7 +164,7 @@ game.attack2 = function () {
     while (this.out2 != 3) {
         for (var i = 0; i < 9; i++) {
             document.write((i + 1) + "번 " + team.playerName2[i] + "<br>");
-            this.randomVariable2();
+            this.randomVariable2(i);
             if (this.answer === "S") {
                 this.strike++;
                 document.write("스트라이크!<br>");
@@ -208,6 +209,17 @@ game.attack2 = function () {
         }
     }
 }
+
+game.hitoutReset1 = function(i) {
+    document.write((i + 1) + "회초 중간점수 " + team.teamNameSave[0] + " : " + this.score1 + " VS " + team.teamNameSave[1] + " : " + this.score2 + "<br>")
+    this.hit1 = 0;
+    this.out1 = 0;
+}
+game.hitoutReset2 = function(i) {
+    document.write((i + 1) + "회말 중간점수 " + team.teamNameSave[0] + " : " + this.score1 + " VS " + team.teamNameSave[1] + " : " + this.score2 + "<br>")
+    this.hit2 = 0;
+    this.out2 = 0;
+}
 // 6회 경기 모두 출력
 game.gameStart = function () {
     for (var i = 0; i < 6; i++) {
@@ -216,17 +228,13 @@ game.gameStart = function () {
         if (this.hit1 === 3 || this.hit1 > 3) {
             this.score1 += (this.hit1 - 2);
         }
-        document.write((i + 1) + "회초 중간점수 " + team.teamNameSave[0] + " : " + this.score1 + " VS " + team.teamNameSave[1] + " : " + this.score2 + "<br>")
-        this.hit1 = 0;
-        this.out1 = 0;
+        this.hitoutReset1(i);
         document.write("<br>" + (i + 1) + "회말 " + team.teamNameSave[1] + " 공격<br><br>");
         this.attack2();
         if (this.hit2 === 3 || this.hit2 > 3) {
             this.score2 += (this.hit2 - 2);
         }
-        document.write((i + 1) + "회말 중간점수 " + team.teamNameSave[0] + " : " + this.score1 + " VS " + team.teamNameSave[1] + " : " + this.score2 + "<br>")
-        this.hit2 = 0;
-        this.out2 = 0;
+        this.hitoutReset2(i);
     }
 }
 
