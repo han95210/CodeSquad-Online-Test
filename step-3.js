@@ -111,6 +111,11 @@ game.randomVariable2 = function (i) {
         this.answer = "안타";
     }
 }
+game.scoreInscoreBoard = function() {
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td>" + game.numInning + "</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>TOT</td><td></td></tr></table>");
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td>" + team.teamNameSave[0] + "</td><td>" + game.inning1Score1 + "</td><td>" + game.inning2Score1 + "</td><td>" + game.inning3Score1 + "</td><td>" + game.inning4Score1 + "</td><td>" + game.inning5Score1 + "</td><td>" + game.inning6Score1 + "</td><td>" + game.totalScore1 + "</td><td></td></tr></table>");
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td>" + team.teamNameSave[1] + "</td><td>" + game.inning1Score2 + "</td><td>" + game.inning2Score2 + "</td><td>" + game.inning3Score2 + "</td><td>" + game.inning4Score2 + "</td><td>" + game.inning5Score2 + "</td><td>" + game.inning6Score2 + "</td><td>" + game.totalScore2 + "</td><td></td></tr></table>");
+}
 
 game.scoreBoard = function () {
     document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td>" + game.numInning + "</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>TOT</td><td></td></tr></table>");
@@ -391,7 +396,7 @@ game.hitoutReset1 = function(i) {
     this.check1player7 = "";
     this.check1player8 = "";
     this.check1player9 = "";
-    game.scoreBoard();
+    game.scoreInscoreBoard();
     this.hit1 = 0;
     this.out1 = 0;
 }
@@ -408,7 +413,7 @@ game.hitoutReset2 = function(i) {
     this.check2player7 = "";
     this.check2player8 = "";
     this.check2player9 = "";
-    game.scoreBoard();
+    game.scoreInscoreBoard();
     this.hit2 = 0;
     this.out2 = 0;
 }
@@ -462,6 +467,9 @@ game.gameStart = function () {
             this.numInning = "5회말";
         } else if (i === 5) {
             this.numInning = "6회말";
+        }
+        if(i === 5 && this.totalScore1 < this.totalScore2) {
+            return;
         }
         document.write("<br>" + (i + 1) + "회말 " + team.teamNameSave[1] + " 공격<br><br>");
         this.attack2();
