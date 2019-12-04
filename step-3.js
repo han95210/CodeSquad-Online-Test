@@ -64,7 +64,7 @@ team.isOutput = function () {
 };
 
 // game 객체 생성
-var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0,throwBall1: 0, strikeOut1: 0, totalHit1: 0, throwBall2: 0, strikeOut2: 0, totalHit2: 0, inning1Score1 : 0, inning2Score1: 0, inning3Score1: 0, inning4Score1: 0, inning5Score1: 0, inning6Score1: 0, inning1Score2 : 0, inning2Score2: 0, inning3Score2: 0, inning4Score2: 0, inning5Score2: 0, inning6Score2: 0, totalScore1 : 0, totalScore2: 0, currentScore1: 0, currentScore2: 0, check1player1: "", check1player2: "", check1player3: "", check1player4: "", check1player5: "", check1player6: "", check1player7: "", check1player8: "", check1player9: "", check2player1: "", check2player2: "", check2player3: "", check2player4: "", check2player5: "", check2player6: "", check2player7: "", check2player8: "", check2player9: "", strikeOne: "", strikeTwo: "", ballOne: "", ballTwo: "", ballThree: "", outOne: "", outTwo: ""};
+var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0,throwBall1: 0, strikeOut1: 0, totalHit1: 0, throwBall2: 0, strikeOut2: 0, totalHit2: 0, inning1Score1 : 0, inning2Score1: 0, inning3Score1: 0, inning4Score1: 0, inning5Score1: 0, inning6Score1: 0, inning1Score2 : 0, inning2Score2: 0, inning3Score2: 0, inning4Score2: 0, inning5Score2: 0, inning6Score2: 0, totalScore1 : 0, totalScore2: 0, currentScore1: 0, currentScore2: 0, check1player1: "", check1player2: "", check1player3: "", check1player4: "", check1player5: "", check1player6: "", check1player7: "", check1player8: "", check1player9: "", check2player1: "", check2player2: "", check2player3: "", check2player4: "", check2player5: "", check2player6: "", check2player7: "", check2player8: "", check2player9: "", strikeOne: "", strikeTwo: "", ballOne: "", ballTwo: "", ballThree: "", outOne: "", outTwo: "", numInning: ""};
 
 game.Array = ["S", "O", "B", "안타"];
 // 각 선수 현재 결과 출력
@@ -113,20 +113,20 @@ game.randomVariable2 = function (i) {
 }
 
 game.scoreBoard = function () {
-    document.write("<table border='1'><tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>TOT</td><td></td></tr></table>");
-    document.write("<table border='1'><tr><td></td><td>" + team.teamNameSave[0] + "</td><td>" + game.inning1Score1 + "</td><td>" + game.inning2Score1 + "</td><td>" + game.inning3Score1 + "</td><td>" + game.inning4Score1 + "</td><td>" + game.inning5Score1 + "</td><td>" + game.inning6Score1 + "</td><td>" + game.totalScore1 + "</td><td></td></tr></table>");
-    document.write("<table border='1'><tr><td></td><td>" + team.teamNameSave[1] + "</td><td>" + game.inning1Score2 + "</td><td>" + game.inning2Score2 + "</td><td>" + game.inning3Score2 + "</td><td>" + game.inning4Score2 + "</td><td>" + game.inning5Score2 + "</td><td>" + game.inning6Score2 + "</td><td>" + game.totalScore2 + "</td><td></td></tr></table>");
-    document.write("<table border='1'><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>");   //공백칸
-    document.write("<table border='1'><tr><td>" + team.teamNameSave[0] + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>" + team.teamNameSave[1] + "</td></tr></table>");
-    document.write("<table border='1'><tr><td>1</td><td>" + team.playerName1[0] + "</td><td>" + game.check1player1 + "</td><td></td><td></td><td></td><td></td><td>" + game.check2player1 + "</td><td>" + team.playerName2[0] + "</td><td>1</td></tr></table>");    //1
-    document.write("<table border='1'><tr><td>2</td><td>" + team.playerName1[1] + "</td><td>" + game.check1player2 + "</td><td></td><td></td><td></td><td></td><td>" + game.check2player2 + "</td><td>" + team.playerName2[1] + "</td><td>2</td></tr></table>");    //2
-    document.write("<table border='1'><tr><td>3</td><td>" + team.playerName1[2] + "</td><td>" + game.check1player3 + "</td><td>S</td><td>" + game.strikeOne + "</td><td>" + game.strikeTwo + "</td><td></td><td>" + game.check2player3 + "</td><td>" + team.playerName2[2] + "</td><td>3</td></tr></table>");    //3
-    document.write("<table border='1'><tr><td>4</td><td>" + team.playerName1[3] + "</td><td>" + game.check1player4 + "</td><td>B</td><td>" + game.ballOne + "</td><td>" + game.ballTwo + "</td><td>" + game.ballThree + "</td><td>" + game.check2player4 + "</td><td>" + team.playerName2[3] + "</td><td>4</td></tr></table>");    //4
-    document.write("<table border='1'><tr><td>5</td><td>" + team.playerName1[4] + "</td><td>" + game.check1player5 + "</td><td>O</td><td>" + game.outOne + "</td><td>" + game.outTwo + "</td><td></td><td>" + game.check2player5 + "</td><td>" + team.playerName2[4] + "</td><td>5</td></tr></table>");    //5
-    document.write("<table border='1'><tr><td>6</td><td>" + team.playerName1[5] + "</td><td>" + game.check1player6 + "</td><td>팀1투구</td><td>" + game.throwBall1 + "</td><td>팀2투구</td><td>" + game.throwBall2 + "</td><td>" + game.check2player6 + "</td><td>" + team.playerName2[5] + "</td><td>6</td></tr></table>");    //6
-    document.write("<table border='1'><tr><td>7</td><td>" + team.playerName1[6] + "</td><td>" + game.check1player7 + "</td><td>팀1삼진</td><td>" + game.strikeOut1 + "</td><td>팀2삼진</td><td>" + game.strikeOut2 + "</td><td>" + game.check2player7 + "</td><td>" + team.playerName2[6] + "</td><td>7</td></tr></table>");    //7
-    document.write("<table border='1'><tr><td>8</td><td>" + team.playerName1[7] + "</td><td>" + game.check1player8 + "</td><td>팀1안타</td><td>" + game.totalHit1 + "</td><td>팀2안타</td><td>" + game.totalHit2 + "</td><td>" + game.check2player8 + "</td><td>" + team.playerName2[7] + "</td><td>8</td></tr></table>");    //8
-    document.write("<table border='1'><tr><td>9</td><td>" + team.playerName1[8] + "</td><td>" + game.check1player9 + "</td><td></td><td></td><td></td><td></td><td>" + game.check2player9 + "</td><td>" + team.playerName2[8] + "</td><td>9</td></tr></table>");    //9
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td>" + game.numInning + "</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>TOT</td><td></td></tr></table>");
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td>" + team.teamNameSave[0] + "</td><td>" + game.inning1Score1 + "</td><td>" + game.inning2Score1 + "</td><td>" + game.inning3Score1 + "</td><td>" + game.inning4Score1 + "</td><td>" + game.inning5Score1 + "</td><td>" + game.inning6Score1 + "</td><td>" + game.totalScore1 + "</td><td></td></tr></table>");
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td>" + team.teamNameSave[1] + "</td><td>" + game.inning1Score2 + "</td><td>" + game.inning2Score2 + "</td><td>" + game.inning3Score2 + "</td><td>" + game.inning4Score2 + "</td><td>" + game.inning5Score2 + "</td><td>" + game.inning6Score2 + "</td><td>" + game.totalScore2 + "</td><td></td></tr></table>");
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>");   //공백칸
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>" + team.teamNameSave[0] + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>" + team.teamNameSave[1] + "</td></tr></table>");
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>1</td><td>" + team.playerName1[0] + "</td><td>" + game.check1player1 + "</td><td></td><td></td><td></td><td></td><td>" + game.check2player1 + "</td><td>" + team.playerName2[0] + "</td><td>1</td></tr></table>");    //1
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>2</td><td>" + team.playerName1[1] + "</td><td>" + game.check1player2 + "</td><td></td><td></td><td></td><td></td><td>" + game.check2player2 + "</td><td>" + team.playerName2[1] + "</td><td>2</td></tr></table>");    //2
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>3</td><td>" + team.playerName1[2] + "</td><td>" + game.check1player3 + "</td><td>S</td><td>" + game.strikeOne + "</td><td>" + game.strikeTwo + "</td><td></td><td>" + game.check2player3 + "</td><td>" + team.playerName2[2] + "</td><td>3</td></tr></table>");    //3
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>4</td><td>" + team.playerName1[3] + "</td><td>" + game.check1player4 + "</td><td>B</td><td>" + game.ballOne + "</td><td>" + game.ballTwo + "</td><td>" + game.ballThree + "</td><td>" + game.check2player4 + "</td><td>" + team.playerName2[3] + "</td><td>4</td></tr></table>");    //4
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>5</td><td>" + team.playerName1[4] + "</td><td>" + game.check1player5 + "</td><td>O</td><td>" + game.outOne + "</td><td>" + game.outTwo + "</td><td></td><td>" + game.check2player5 + "</td><td>" + team.playerName2[4] + "</td><td>5</td></tr></table>");    //5
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>6</td><td>" + team.playerName1[5] + "</td><td>" + game.check1player6 + "</td><td>팀1투구</td><td>" + game.throwBall1 + "</td><td>팀2투구</td><td>" + game.throwBall2 + "</td><td>" + game.check2player6 + "</td><td>" + team.playerName2[5] + "</td><td>6</td></tr></table>");    //6
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>7</td><td>" + team.playerName1[6] + "</td><td>" + game.check1player7 + "</td><td>팀1삼진</td><td>" + game.strikeOut1 + "</td><td>팀2삼진</td><td>" + game.strikeOut2 + "</td><td>" + game.check2player7 + "</td><td>" + team.playerName2[6] + "</td><td>7</td></tr></table>");    //7
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>8</td><td>" + team.playerName1[7] + "</td><td>" + game.check1player8 + "</td><td>팀1안타</td><td>" + game.totalHit1 + "</td><td>팀2안타</td><td>" + game.totalHit2 + "</td><td>" + game.check2player8 + "</td><td>" + team.playerName2[7] + "</td><td>8</td></tr></table>");    //8
+    document.write("<table width='1000' cellpadding='15' cellspacing='0' border='1' style='table-layout:fixed'><tr><td>9</td><td>" + team.playerName1[8] + "</td><td>" + game.check1player9 + "</td><td></td><td></td><td></td><td></td><td>" + game.check2player9 + "</td><td>" + team.playerName2[8] + "</td><td>9</td></tr></table>");    //9
 }
 
 game.attack1 = function () {
@@ -382,6 +382,15 @@ game.hitoutReset1 = function(i) {
     document.write((i + 1) + "회초 중간점수 " + team.teamNameSave[0] + " : " + this.score1 + " VS " + team.teamNameSave[1] + " : " + this.score2 + "<br>")
     this.outOne = "";
     this.outTwo = "";
+    this.check1player1 = "";
+    this.check1player2 = "";
+    this.check1player3 = "";
+    this.check1player4 = "";
+    this.check1player5 = "";
+    this.check1player6 = "";
+    this.check1player7 = "";
+    this.check1player8 = "";
+    this.check1player9 = "";
     game.scoreBoard();
     this.hit1 = 0;
     this.out1 = 0;
@@ -390,6 +399,15 @@ game.hitoutReset2 = function(i) {
     document.write((i + 1) + "회말 중간점수 " + team.teamNameSave[0] + " : " + this.score1 + " VS " + team.teamNameSave[1] + " : " + this.score2 + "<br>")
     this.outOne = "";
     this.outTwo = "";
+    this.check2player1 = "";
+    this.check2player2 = "";
+    this.check2player3 = "";
+    this.check2player4 = "";
+    this.check2player5 = "";
+    this.check2player6 = "";
+    this.check2player7 = "";
+    this.check2player8 = "";
+    this.check2player9 = "";
     game.scoreBoard();
     this.hit2 = 0;
     this.out2 = 0;
@@ -397,6 +415,19 @@ game.hitoutReset2 = function(i) {
 // 6회 경기 모두 출력
 game.gameStart = function () {
     for (var i = 0; i < 6; i++) {
+        if (i === 0) {
+            this.numInning = "1회초";
+        } else if (i === 1) {
+            this.numInning = "2회초";
+        } else if (i === 2) {
+            this.numInning = "3회초";
+        } else if (i === 3) {
+            this.numInning = "4회초";
+        } else if (i === 4) {
+            this.numInning = "5회초";
+        } else if (i === 5) {
+            this.numInning = "6회초";
+        }
         document.write((i + 1) + "회초 " + team.teamNameSave[0] + " 공격<br><br>");
         this.attack1();
         if (this.hit1 === 3 || this.hit1 > 3) {
@@ -419,6 +450,19 @@ game.gameStart = function () {
         }
         
         this.hitoutReset1(i);
+        if (i === 0) {
+            this.numInning = "1회말";
+        } else if (i === 1) {
+            this.numInning = "2회말";
+        } else if (i === 2) {
+            this.numInning = "3회말";
+        } else if (i === 3) {
+            this.numInning = "4회말";
+        } else if (i === 4) {
+            this.numInning = "5회말";
+        } else if (i === 5) {
+            this.numInning = "6회말";
+        }
         document.write("<br>" + (i + 1) + "회말 " + team.teamNameSave[1] + " 공격<br><br>");
         this.attack2();
         if (this.hit2 === 3 || this.hit2 > 3) {
