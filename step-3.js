@@ -5,11 +5,11 @@
 // -함수(또는 메소드)의 크기는 15줄 이하를 권장한다.
 // -함수(또는 메소드)의 들여쓰기는 최대 3단계로 구현한다.
 
-// team.playerName1 = ["최한울", "김보근", "한동윤", "김승언", "달마", "박선배", "박재연", "최승현", "박게이"];
-// team.playerName2 = ["카타", "가렌", "제이스", "제라스", "세나", "루시안", "카밀", "잭스", "니코"];
+// team.playerName1 = ["김남준", "김태형", "민윤기", "김석진", "정호석", "박지민", "전정국", "방시혁", "손성득"];
+// team.playerName2 = ["최한울", "김보근", "한동윤", "김승언", "달마", "박선배", "박재연", "최승현", "박게이"];
 // team.playerBattingAve1 = ["0.111", "0.222", "0.333", "0.444", "0.111", "0.222", "0.333", "0.444", "0.111"];
 // team.playerBattingAve2 = ["0.111", "0.222", "0.333", "0.444", "0.111", "0.222", "0.333", "0.444", "0.111"];
-// team.teamNameSave = ["1-8반 히어로즈", "리오레"];
+// team.teamNameSave = ["빅히트", "1-8반 히어로즈"];
 
 // team 객체 생성
 var team = {};
@@ -111,6 +111,23 @@ game.randomVariable2 = function (i) {
     }
 }
 
+game.scoreBoard = function () {
+    document.write("<table border='1'><tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>TOT</td><td></td></tr></table>");
+    document.write("<table border='1'><tr><td></td><td>" + team.teamNameSave[0] + "</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>TOT0</td><td></td></tr></table>");
+    document.write("<table border='1'><tr><td></td><td>" + team.teamNameSave[1] + "</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>TOT0</td><td></td></tr></table>");
+    document.write("<table border='1'><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>");   //공백칸
+    document.write("<table border='1'><tr><td>" + team.teamNameSave[0] + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>" + team.teamNameSave[1] + "</td></tr></table>");
+    document.write("<table border='1'><tr><td>1</td><td>" + team.playerName1[0] + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td>" + team.playerName2[0] + "</td><td>1</td></tr></table>");    //1
+    document.write("<table border='1'><tr><td>2</td><td>" + team.playerName1[1] + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td>" + team.playerName2[1] + "</td><td>2</td></tr></table>");    //2
+    document.write("<table border='1'><tr><td>3</td><td>" + team.playerName1[2] + "</td><td></td><td>S</td><td>X</td><td></td><td></td><td></td><td>" + team.playerName2[2] + "</td><td>3</td></tr></table>");    //3
+    document.write("<table border='1'><tr><td>4</td><td>" + team.playerName1[3] + "</td><td></td><td>B</td><td>X</td><td>X</td><td>X</td><td></td><td>" + team.playerName2[3] + "</td><td>4</td></tr></table>");    //4
+    document.write("<table border='1'><tr><td>5</td><td>" + team.playerName1[4] + "</td><td></td><td>O</td><td>X</td><td>X</td><td></td><td></td><td>" + team.playerName2[4] + "</td><td>5</td></tr></table>");    //5
+    document.write("<table border='1'><tr><td>6</td><td>" + team.playerName1[5] + "</td><td></td><td>팀1투구</td><td>25</td><td>팀2투구</td><td>14</td><td></td><td>" + team.playerName2[5] + "</td><td>6</td></tr></table>");    //6
+    document.write("<table border='1'><tr><td>7</td><td>" + team.playerName1[6] + "</td><td></td><td>팀1삼진</td><td>4</td><td>팀2삼진</td><td>6</td><td></td><td>" + team.playerName2[6] + "</td><td>7</td></tr></table>");    //7
+    document.write("<table border='1'><tr><td>8</td><td>" + team.playerName1[7] + "</td><td></td><td>팀1안타</td><td>7</td><td>팀2안타</td><td>14</td><td></td><td>" + team.playerName2[7] + "</td><td>8</td></tr></table>");    //8
+    document.write("<table border='1'><tr><td>9</td><td>" + team.playerName1[8] + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td>" + team.playerName2[8] + "</td><td>9</td></tr></table>");    //9
+}
+
 game.attack1 = function () {
     while (this.out1 != 3) {
         for (var i = 0; i < 9; i++) {
@@ -157,6 +174,7 @@ game.attack1 = function () {
             if (this.out1 === 3) {
                 break;
             }
+            game.scoreBoard();
         }
     }
 }
@@ -206,6 +224,7 @@ game.attack2 = function () {
             if (this.out2 === 3) {
                 break;
             }
+            game.scoreBoard();
         }
     }
 }
