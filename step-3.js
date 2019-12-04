@@ -165,7 +165,8 @@ game.attack1 = function () {
             } else if (i === 8) {
                 this.check1player8 = "";
                 this.check1player9 = "V";
-            } 
+            }
+            document.write("<br><br><br>");
             game.scoreBoard();
             document.write((i + 1) + "번 " + team.playerName1[i] + "<br>");
             this.randomVariable1(i);
@@ -197,6 +198,7 @@ game.attack1 = function () {
                     }
                     this.reset1();
                 }
+                document.write("<br>다음 투구 보기(enter) or 스킵하고 X회말 후 투구보기(숫자+enter)");
             } else if (this.answer === "O") {
                 this.out1++;
                 this.strikeOne = "";
@@ -216,6 +218,7 @@ game.attack1 = function () {
                     document.write("아웃!<br>");
                     this.reset1();
                 }
+                document.write("<br>다음 투구 보기(enter) or 스킵하고 X회말 후 투구보기(숫자+enter)");
             } else if (this.answer === "B") {
                 this.ball++;
                 document.write("볼!<br>");
@@ -241,6 +244,7 @@ game.attack1 = function () {
                     document.write("볼 넷으로 1안타가 됩니다.<br>");
                     this.reset1();
                 }
+                document.write("<br>다음 투구 보기(enter) or 스킵하고 X회말 후 투구보기(숫자+enter)");
             } else if (this.answer === "안타") {
                 this.hit1++;
                 this.totalHit1++;
@@ -251,13 +255,15 @@ game.attack1 = function () {
                 this.ballThree = "";
                 document.write("안타! 다음 타자가 타석에 입장했습니다.<br>");
                 this.reset1();
+                document.write("<br>다음 투구 보기(enter) or 스킵하고 X회말 후 투구보기(숫자+enter)");
             }
             if (this.out1 === 3) {
                 break;
             }
-        }
+        } 
     }
 }
+
 game.attack2 = function () {
     while (this.out2 != 3) {
         for (var i = 0; i < 9; i++) {
