@@ -64,7 +64,7 @@ team.isOutput = function () {
 };
 
 // game 객체 생성
-var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0,throwBall1: 0, strikeOut1: 0, totalHit1: 0, throwBall2: 0, strikeOut2: 0, totalHit2: 0, inning1Score1 : 0, inning2Score1: 0, inning3Score1: 0, inning4Score1: 0, inning5Score1: 0, inning6Score1: 0, inning1Score2 : 0, inning2Score2: 0, inning3Score2: 0, inning4Score2: 0, inning5Score2: 0, inning6Score2: 0, totalScore1 : 0, totalScore2: 0};
+var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0,throwBall1: 0, strikeOut1: 0, totalHit1: 0, throwBall2: 0, strikeOut2: 0, totalHit2: 0, inning1Score1 : 0, inning2Score1: 0, inning3Score1: 0, inning4Score1: 0, inning5Score1: 0, inning6Score1: 0, inning1Score2 : 0, inning2Score2: 0, inning3Score2: 0, inning4Score2: 0, inning5Score2: 0, inning6Score2: 0, totalScore1 : 0, totalScore2: 0, currentScore1: 0, currentScore2: 0};
 
 game.Array = ["S", "O", "B", "안타"];
 // 각 선수 현재 결과 출력
@@ -256,16 +256,44 @@ game.gameStart = function () {
         document.write((i + 1) + "회초 " + team.teamNameSave[0] + " 공격<br><br>");
         this.attack1();
         if (this.hit1 === 3 || this.hit1 > 3) {
+            this.currentScore1 = (this.hit1 - 2);
             this.score1 += (this.hit1 - 2);
             this.totalScore1 += (this.hit1 - 2);
+            if (i === 0) {
+                this.inning1Score1 = this.currentScore1;
+            } else if (i === 1) {
+                this.inning2Score1 = this.currentScore1;
+            } else if (i === 2) {
+                this.inning3Score1 = this.currentScore1;
+            } else if (i === 3) {
+                this.inning4Score1 = this.currentScore1;
+            } else if (i === 4) {
+                this.inning5Score1 = this.currentScore1;
+            } else if (i === 5) {
+                this.inning6Score1 = this.currentScore1;
+            }
         }
         
         this.hitoutReset1(i);
         document.write("<br>" + (i + 1) + "회말 " + team.teamNameSave[1] + " 공격<br><br>");
         this.attack2();
         if (this.hit2 === 3 || this.hit2 > 3) {
+            this.currentScore2 = (this.hit2 - 2);
             this.score2 += (this.hit2 - 2);   
             this.totalScore2 += (this.hit2 - 2);
+            if (i === 0) {
+                this.inning1Score2 = this.currentScore2;
+            } else if (i === 1) {
+                this.inning2Score2 = this.currentScore2;
+            } else if (i === 2) {
+                this.inning3Score2 = this.currentScore2;
+            } else if (i === 3) {
+                this.inning4Score2 = this.currentScore2;
+            } else if (i === 4) {
+                this.inning5Score2 = this.currentScore2;
+            } else if (i === 5) {
+                this.inning6Score2 = this.currentScore2;
+            }
         }
         this.hitoutReset2(i);
     }
