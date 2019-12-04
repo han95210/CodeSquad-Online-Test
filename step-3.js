@@ -64,7 +64,8 @@ team.isOutput = function () {
 };
 
 // game 객체 생성
-var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0 };
+var game = { strike: 0, ball: 0, out1: 0, out2: 0, hit1: 0, hit2: 0, score1: 0, score2: 0,throwBall1: 0, strikeOut1: 0, totalHit1: 0, throwBall2: 0, strikeOut2: 0, totalHit2: 0};
+
 game.Array = ["S", "O", "B", "안타"];
 // 각 선수 현재 결과 출력
 game.result1 = function () {
@@ -122,15 +123,16 @@ game.scoreBoard = function () {
     document.write("<table border='1'><tr><td>3</td><td>" + team.playerName1[2] + "</td><td></td><td>S</td><td>X</td><td></td><td></td><td></td><td>" + team.playerName2[2] + "</td><td>3</td></tr></table>");    //3
     document.write("<table border='1'><tr><td>4</td><td>" + team.playerName1[3] + "</td><td></td><td>B</td><td>X</td><td>X</td><td>X</td><td></td><td>" + team.playerName2[3] + "</td><td>4</td></tr></table>");    //4
     document.write("<table border='1'><tr><td>5</td><td>" + team.playerName1[4] + "</td><td></td><td>O</td><td>X</td><td>X</td><td></td><td></td><td>" + team.playerName2[4] + "</td><td>5</td></tr></table>");    //5
-    document.write("<table border='1'><tr><td>6</td><td>" + team.playerName1[5] + "</td><td></td><td>팀1투구</td><td>25</td><td>팀2투구</td><td>14</td><td></td><td>" + team.playerName2[5] + "</td><td>6</td></tr></table>");    //6
-    document.write("<table border='1'><tr><td>7</td><td>" + team.playerName1[6] + "</td><td></td><td>팀1삼진</td><td>4</td><td>팀2삼진</td><td>6</td><td></td><td>" + team.playerName2[6] + "</td><td>7</td></tr></table>");    //7
-    document.write("<table border='1'><tr><td>8</td><td>" + team.playerName1[7] + "</td><td></td><td>팀1안타</td><td>7</td><td>팀2안타</td><td>14</td><td></td><td>" + team.playerName2[7] + "</td><td>8</td></tr></table>");    //8
+    document.write("<table border='1'><tr><td>6</td><td>" + team.playerName1[5] + "</td><td></td><td>팀1투구</td><td>" + game.throwBall1 + "</td><td>팀2투구</td><td>" + game.throwBall2 + "</td><td></td><td>" + team.playerName2[5] + "</td><td>6</td></tr></table>");    //6
+    document.write("<table border='1'><tr><td>7</td><td>" + team.playerName1[6] + "</td><td></td><td>팀1삼진</td><td>" + game.strikeOut1 + "</td><td>팀2삼진</td><td>" + game.strikeOut2 + "</td><td></td><td>" + team.playerName2[6] + "</td><td>7</td></tr></table>");    //7
+    document.write("<table border='1'><tr><td>8</td><td>" + team.playerName1[7] + "</td><td></td><td>팀1안타</td><td>" + game.totalHit1 + "</td><td>팀2안타</td><td>" + game.totalHit2 + "</td><td></td><td>" + team.playerName2[7] + "</td><td>8</td></tr></table>");    //8
     document.write("<table border='1'><tr><td>9</td><td>" + team.playerName1[8] + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td>" + team.playerName2[8] + "</td><td>9</td></tr></table>");    //9
 }
 
 game.attack1 = function () {
     while (this.out1 != 3) {
         for (var i = 0; i < 9; i++) {
+            this.throwBall1++;
             document.write((i + 1) + "번 " + team.playerName1[i] + "<br>");
             this.randomVariable1(i);
             if (this.answer === "S") {
@@ -142,6 +144,7 @@ game.attack1 = function () {
                 }
                 if (this.strike === 3) {
                     this.out1++;
+                    this.strikeOut1++;
                     document.write("스트라이크 3개로 1아웃이 추가됩니다!<br>");
                     this.reset1();
                 }
@@ -163,11 +166,13 @@ game.attack1 = function () {
                 }
                 if (this.ball === 4) {
                     this.hit1++;
+                    this.totalHit1++;
                     document.write("볼 넷으로 1안타가 됩니다.<br>");
                     this.reset1();
                 }
             } else if (this.answer === "안타") {
                 this.hit1++;
+                this.totalHit1++;
                 document.write("안타! 다음 타자가 타석에 입장했습니다.<br>");
                 this.reset1();
             }
@@ -181,6 +186,7 @@ game.attack1 = function () {
 game.attack2 = function () {
     while (this.out2 != 3) {
         for (var i = 0; i < 9; i++) {
+            this.throwBall2++;
             document.write((i + 1) + "번 " + team.playerName2[i] + "<br>");
             this.randomVariable2(i);
             if (this.answer === "S") {
@@ -192,6 +198,7 @@ game.attack2 = function () {
                 }
                 if (this.strike === 3) {
                     this.out2++;
+                    this.strikeOut2++;
                     document.write("스트라이크 3개로 1아웃이 추가됩니다!<br>");
                     this.reset2();
                 }
@@ -213,11 +220,13 @@ game.attack2 = function () {
                 }
                 if (this.ball === 4) {
                     this.hit2++;
+                    this.totalHit2++;
                     document.write("볼 넷으로 1안타가 됩니다.<br>");
                     this.reset2();
                 }
             } else if (this.answer === "안타") {
                 this.hit2++;
+                this.totalHit2++;
                 document.write("안타! 다음 타자가 타석에 입장했습니다.<br>");
                 this.reset2();
             }
